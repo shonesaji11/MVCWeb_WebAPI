@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- CSS only -->
+    <!-- CSS only -->
+    @section scripts{
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+        <script type="text/javascript" src="https://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqx-all.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" />
+    }
+
+    <script type="text/javascript" src="https://jqwidgets.com/jquery-widgets-demo/scripts/jquery-1.11.1.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // In this part, you need to prepare your data
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+
+                    { name: 'EId', type: 'number' },
+                    { name: 'EName', type: 'string' },
+                    { name: 'EDesig', type: 'string' },
+                    { name: 'EDOJ', type: 'string' },
+
+                ],
+                url: 'https://localhost:44397/odata/employees'
+            }
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            // displaying data in the grid with jqxGrid
+            $("#gridEmps").jqxGrid(
+                {
+                    width: 1000,
+                    source: dataAdapter,
+                    pageable: true,
+                    sortable: true,
+                    columns: [
+
+                        { text: "Employee Id", datafield: "EId" },
+                        { text: "Employee Name", datafield: "EName" },
+                        { text: "Employee Designation", datafield: "EDesig" },
+                        { text: "Employee Date of Joining", datafield: "EDOJ" },
+
+                    ]
+                });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="bg-primary text-white">Using API Data</h1>
+        <div id="gridEmps" style="margin:30px;" class="bg-white text-primary"></div>
+    </div>
+
+</body>
+</html>
+
+
